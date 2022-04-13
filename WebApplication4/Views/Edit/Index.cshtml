@@ -1,0 +1,46 @@
+﻿@model List<WebApplication4.ViewModels.UserCheckBox>
+<h1>Users Chack Box</h1>
+
+@using (Html.BeginForm("Edit", "Edit", FormMethod.Post))
+{
+    <input type="submit" name="delete" value="Delete"/>
+    <input type="submit" name="block" value="Block" />
+    <input type="submit" name="unblock" value="Unblock" />
+    <input type="checkbox" id="checkAll" onClick="toggle(this)"/><span>Check All</span>
+    <table class="table">
+        <tr>
+            <th> @Html.DisplayNameFor(m=>m[0].Id) </th>
+            <th> @Html.DisplayNameFor(m=>m[0].Login) </th>
+            <th> @Html.DisplayNameFor(m => m[0].Password) </th>
+            <th> @Html.DisplayNameFor(m => m[0].IsBlock) </th>
+            <th> @Html.DisplayNameFor(m => m[0].IsCheck) </th>
+        </tr>
+    @for (int i = 0; i < Model.Count; i++)
+    {
+        <tr>
+            <td width="10%"> @Model[i].Id </td>
+            <td width="30%"> @Model[i].Login </td>
+            <td width="30%"> @Model[i].Password </td>
+            <td width="20%"> @Model[i].IsBlock </td>
+            <td width="10%"> @Html.CheckBoxFor(m=> m[i].IsCheck) </td>
+            @Html.HiddenFor(m=>m[i].Id)
+            @Html.HiddenFor(m=>m[i].Login)
+            @Html.HiddenFor(m=>m[i].Password)
+            @Html.HiddenFor(m=>m[i].IsBlock)
+        </tr>
+    }
+    </table>
+}
+
+<p>@ViewBag.users</p>
+
+@section scripts
+{
+    <script>
+        $(function () {
+          $("#checkAll").click(function(){
+              $("input[type='checkbox']").attr("checked", this.checked);
+          });
+        });
+    </script>
+}

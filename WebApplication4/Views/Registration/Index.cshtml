@@ -1,0 +1,10 @@
+﻿<h1>Registration</h1>
+@ViewData["msg"]
+<form method="post" asp-controller="registration" asp-action="reg">
+    Login <input type="text" name="Login"/>
+    <br>
+    Password <input type="password" name="Password"/>
+    <br>
+    <input type="submit" value="Registration" />
+</form>
+<div><a href = "/">login</a></div>
